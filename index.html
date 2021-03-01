@@ -4,32 +4,296 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Introdução à Análise Computacional de Textos</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">		
 	</head>
+	
 	<body>
 		<div class="reveal">
 			<div class="slides">
+			
 				<section>
-					Introdução à Análise Computacional de Textos
-					Apresentação para o VI Seminário Discente UFMG - 2021 
-					EM ELABORAÇÃO
+				
+				<!-- https://community.wolfram.com/c/portal/getImageAttachment?filename=er345gtrwdfasA.gif&userId=20103 -->
+					<h3>Oficina</h3>
+					<h2 style="color:MediumSeaGreen;">Introdução à Análise Computacional de Textos</h2>
+					Apresentação para VI Seminário Discente <br>
+					<small>Programa de Pós-Graduação em Sociologia PPGS-UFMG</small> <br>
+					Dias: 06 e 07 de Julho de 2021 <br>
+					Alisson Soares <br>
+					<small><span style="color:gray;"><i>#digital_humanities; #digital_sociology </i></span></small>
+					<p id="blink" style="color:Tomato;"> APRESENTAÇÃO AINDA EM ELABORAÇÃO</p>
+					 <script type="text/javascript">
+				        var blink = document.getElementById('blink');
+				        setInterval(function() {
+				            blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+				        }, 300);
+				  	</script>
 				</section>
+				
 				<section>
-					Como usar esta apresentação
-					- Setas de navegação para os lados ←→ e para cima e para baixo ↓
-					- A tecla "Esc" oferece uma visão panorâmica da apresentação
+					<h3>Como usar esta apresentação</h3>
+					- Setas de navegação para os lados ←→ e para cima e para baixo ↓  <small>Ver canto direito inferior da tela</small> <br>
+					- A tecla "Esc" oferece uma visão panorâmica da apresentação <br>
+					- Há hyperlinks no texto. <a href="http://www.google.com">Por exemplo</a> <br>
+					- Link desta apresentação no Yutube (<span style="color:Tomato;">em breve!</span>)
+<!-- 					<p id="blink"> EM BREVE</p>
+					 <script type="text/javascript">
+				        var blink = document.getElementById('blink');
+				        setInterval(function() {
+				            blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+				        }, 300);
+				  	</script> -->
 				</section>
+				
 				<section>
-					 <section data-background-image="https://images-na.ssl-images-amazon.com/images/I/41fy7gxeA9L._SX317_BO1,204,203,200_.jpg">
-					"the best digital theory-building of the past decade stems from social and computational origins. As such, it is increasingly apparent that digital sociologists need to develop a computational as well as a sociological imagination"(Neil Selwyn. What is Digital Sociology?. 2019) 
+					<section data-background="#4d7e65">
+						<h2>Tópicos a serem tratados</h2>
+						<small>(Role para baixo ↓)</small>
+					</section>
+					<section data-background="#4d7e65" data-markdown>
+					### Tópicos a serem tratados (1/2)
+					- Introdução: O que é análise textual?
+					- Exemplos de pesquisas utilizando análise textual nas ciências sociais
+					- Passos na preparação de textos
+					    - segmentação/tokenização
+					    - stemização, 
+					    - lematização, 
+					    - remoção de  palavra vazia (_stopwords_)		
+					</section>
+					<section data-background="#4d7e65" data-markdown>
+					### Tópicos a serem tratados (2/2)
+					- Expressões regulares (RegEx)
+					- Análises de frequência 
+					    - Ngrams
+					    - Nuvem de palavras
+					- Análise de sentimentos
+					- Etiquetagem de classe gramatical (_part-of-speech tagging_)
+					- Modelagem de Tópicos (_Topic Modeling_)				
+					</section>
 				</section>
+				
+				
+				<section>
+					<section><h1>Introdução</h1></section>
+					
+					<section data-markdown>
+						## Sentidos de "Digital" em "Sociologia Digital"
+						- Consequências sociais da interação online
+						- Pesquisa social usando ferramentas computacionais & programação
+					</section>
+					<section data-markdown>
+					"Humanidades digitais", "ciências sociais computacionais", "sociologia digital", "história digital".
+					
+					Note: usam técnicas computacionais muito parecidas, com algumas especificidades análise de som, imagem e texto, Nas artes como em ciências.					
+					</section>
+					
+					<!-- <section>  -->
+									 <section data-background-image="https://images-na.ssl-images-amazon.com/images/I/41fy7gxeA9L._SX317_BO1,204,203,200_.jpg" data-background-repeat="repeat" data-background-size="150px" data-background-opacity=0.07> 
+									<blockquote>
+<!-- 									 <p style="color:Black;"> 
+									 <p style=style="background-color:Tomato;">  -->
+									"the best digital theory-building of the past decade stems from social and computational origins. As such, it is increasingly apparent that digital sociologists <p style="display:inline" class="fragment highlight-red"><strong>need to develop a computational</strong></p> as well as a <p style="display:inline" class="fragment highlight-red"><strong>sociological imagination</strong></p>"									
+									<small> (Neil Selwyn. <b>What is Digital Sociology?</b> 2019. p.42)</small>  </p>
+									</p> 
+									</blockquote>							
+ 						<a href="#" >
+ 							<img width="178" height="238" src="https://images-na.ssl-images-amazon.com/images/I/41fy7gxeA9L._SX317_BO1,204,203,200_.jpg" alt="imagem livro">
+						</a>
+						<!-- <img class="r-stretch" src="https://images-na.ssl-images-amazon.com/images/I/41fy7gxeA9L._SX317_BO1,204,203,200_.jpg"> --> <!-- r-strech -> fit image do remaining size -->
+						</section>
+						
+						<section data-markdown>
+							## Provável primeiro uso do termo "Sociologia Digital":
+							**Jonathan Wynn**. 
+							[Digital Sociology: Emergent Technologies in the Field and the Classroom”](https://www.academia.edu/26473501/Digital_Sociology_Emergent_Technologies_in_the_Field_and_the_Classroom). Sociological Forum, Vol. 24, No. 2, June 2009 
+										
+							_Atenção: Link no nome do artigo_
+									
+							Note: apud “Sociologia digital: tecnologias emergentes no campo e na sala de aula” 
+							
+							</section>
+							<section data-markdown>
+							Nota sobre softwares / softwares online / programação
+							Note: ferramentas online são mais fáceis, mas podem ser descontinuadas. A análise usada pode ser uma "caixa preta". Programação é como "lego".
+							</section>
+							
+							<section data-background-iframe="https://www.isa-sociology.org/en/research-networks/thematic-groups/tg10-digital-sociology" >
+          				Grupo Temática -ISA
+							</section>
+				</section>	
+					
+				<section data-background="#007777">
+						<h2> Tipos de dados</h2>
+					<section data-background="#007777" data-transition="cube" data-markdown >
+						- 1) não estruturados
+						- 2) semi estruturados
+						- 3) estruturados
+						</section>
+						<section>
+							<h4>1. Dados não-estruturados</h4>
+							Texto normal, como lemos em jornais, revistas, livros, artigos, etc. <br>
+							Ex.:
+							<blockquote ><small>
+							"Algum tempo hesitei se devia abrir estas memorias pelo principio ou pelo fim, isto é, se poria em primeiro logar o meu nascimento ou a minha morte. Supposto o uso vulgar seja começar pelo nascimento, duas considerações me levaram a adoptar differente methodo: a primeira é que eu não sou propriamente um autor defunto, mas um defunto autor, para quem a campa foi outro berço; a segunda é que o escripto ficaria assim mais galante e mais novo. Moysés, que tambem contou a sua morte, não a poz no introito, mas no cabo: differença radical entre este livro e o Pentateuco...." </small>
+							</blockquote>								
+						</section>
+						<section data-markdown>
+						### 1.Dados não-estruturados
+						- leitura por humanos
+						- Processamento de linguagem natural (PLN)/ _Natural Language Process_ (NLP)
+						</section>
+						<section >
+						<h3>2. Dados estruturados</h3>
+						Ex.: Dados estruturados em tabelas
+						
+						É fácil para a máquina saber qual a sigla do Amapá
+						
+						<small>
+						<p style="font-size:11px">
+						<div>
+						<table> 
+							<thead>
+							<tr class="header">
+							<th>Estado</th>
+							<th>sigla</th>
+							<th>capital</th>
+							<th>região</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr class="odd">
+							<td>Acre</td>
+							<td>AC</td>
+							<td>Rio Branco</td>
+							<td>Norte</td>
+							</tr>
+							<tr class="even">
+							<td>Alagoas</td>
+							<td>AL</td>
+							<td>Maceió</td>
+							<td>Nordeste</td>
+							</tr>
+							<tr class="odd">
+							<td>Amapá</td>
+							<td>AP</td>
+							<td>Macapá</td>
+							<td>Norte</td>
+							</tr>
+							<tr class="even">
+							<td>Amazonas</td>
+							<td>AM</td>
+							<td>Manaus</td>
+							<td>Norte</td>
+							</tr>
+							<tr class="odd">
+							<td>Bahia</td>
+							<td>BA</td>
+							<td>Salvador</td>
+							<td>Nordeste</td>
+							</tr>
+							<tr class="even">
+							<td>Ceará</td>
+							<td>CE</td>
+							<td>Fortaleza</td>
+							<td>Nordeste</td>
+							</tr>
+							<tr class="odd">
+							<td>Distrito Federal</td>
+							<td>DF</td>
+							<td>Brasília</td>
+							<td>Centro-Oeste</td>
+							</tr>
+							<tr class="even">
+							<td>Espírito Santo</td>
+							<td>ES</td>
+							<td>Vitória</td>
+							<td>Sudeste</td>
+							</tr>
+						</table>
+						</div>
+						</small>
+					
+						</section>
+							
+						<section>
+						<h3>2.Dados semi-estruturados</h3>
+						Códigos especiais, ou “markup”
+						  <pre><code data-trim>
+						 <name>Joaquim José da Silva Xavier</name>, 
+						 o Tiradentes (<local>Fazenda do Pombal</local>,
+						 batizado em <data>12 de novembro de 1746</data> — 
+						 <local>Rio de Janeiro</local>, 
+						 <data>21 de abril de 1792</data>), 
+						 foi um <profissao>dentista</profissao>, <profissao>tropeiro</profissao>, 
+						 <profissao>minerador</profissao>, <profissao>comerciante</profissao>, 
+						 <profissao>militar</profissao> e <profissao>ativista político</profissao> <gentilico>brasileiro</gentilico>, 
+						 que atuou nas capitanias de <local>Minas Gerais</local> e <local>Rio de Janeiro</local>.
+						  </code></pre>
+						  <aside class="notes">
+						  In computer text processing, a markup language is a system for annotating a document in a way that is syntactically distinguishable from the text, meaning when the document is processed for display, the markup language is not shown, and is only used to format the text. Wikipedia
+						  </aside>
+						</section>							
+							
+						</section>
+				
+				<section>
+				<h3>Passos</h3>
+					<section data-markdown>
+					
+					- 1) Adquirir os dados
+					- 2) Preparar/pré-processar os dados
+					- 3) Analisar os dados
+					</section>
+					<section>
+						<h2>1)Adquirir os dados</h2>
+						- Baixar dados prontos. 
+						<div class="fragment" data-fragment-index="2">- Minerar os dados (exige conhecimento de programação)</div>
+						<div class="fragment" data-fragment-index="3">- raspagem de dados/ Web scraping, crawling, spider.</div>
+						<div class="fragment" data-fragment-index="4">- Usar APIs das plataformas: <!--Alguns oficias, outros não--> </div>
+						<div class="fragment" data-fragment-index="5">
+						     - API do Youtube, Twitter, Facebobok, Instagram, New York Times, The Guardian
+						     Note:  <!-- Lei de acesso à informação (LAI) --> 
+    </div>					
+					</section>		
+				</section>
+
+
+
+				<section>
+					<section>
+					<h1>Aplicações em pesquisas</h1>
+					</section>						
+					
+					<section data-markdown>
+					## Bibliometria / scientometria
+					
+					Fonte: HEDSTRÖM, Peter; SWEDBERG; and UDÉHN, Lars. Popper's Situational Analysis and Contemporary Sociology. Philosophy of the Social Sciences 1998; 28; 339-64
+					Note: HEDSTRÖM et al. (1998:343) apresentam o número de citações que alguns dos principais filósofos da ciência receberam nas principais revistas de sociologia (ver Tabela 1 em “Anexo”). Popper seria o filósofo mais influente na Europa, principalmente nos países de língua alemã, ao passo que Kuhn seria mais dominante nos EUA.
+					</section>															
+				</section>
+				
+				<section data-visibility="hidden">
+					<section data-markdown>
+					 ## Para se aprofundar. 
+					 # Journals
+					 - [Reviews in Digital Humanities](https://reviewsindh.pubpub.org/)
+					 - [Journal of Digital Humanities (ISSN 2165-6673)](http://journalofdigitalhumanities.org/)
+					 - 
+					 # Cursos
+					 EdX [Introducing Text Analytics and Natural Language Processing with Python](https://www.edx.org/course/introducing-text-analytics-and-natural-language-processing-with-python)					
+					</section>				
+				</section>
+
+
+				
+				
 			</div>
 		</div>
 
